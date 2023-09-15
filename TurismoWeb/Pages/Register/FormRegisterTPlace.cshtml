@@ -1,0 +1,71 @@
+﻿@page
+@model TurismoWeb.Pages.Register.FormRegisterTPlaceModel
+@{
+    ViewData["Title"] = "Registro de atractivo Turístico";
+}
+
+
+<link rel="stylesheet" href="~/css/formTuristicStyle.css">
+
+<div class="wrapper">
+    <div class="title">
+        Registro Atractivo Turístico
+    </div>
+    <div class="form">
+        <div class="inputfield">
+            <label>Nombre</label>
+            <input type="text" class="input" placeholder="Nombre del atractivo turístico">
+        </div>
+        <div class="inputfield">
+            <label>Descripción</label>
+            <input type="text" class="input" placeholder="Descripción del atractivo turístico">
+        </div>
+
+        <div class="inputfield">
+            <button type="submit" value="Horarios" class="btn">Horario</button>
+        </div>
+        <div class="inputfield">
+            <label>Precio</label>
+            <input type="number" class="input" placeholder="Precio">
+        </div>
+        <div class="inputfield">
+            <button type="submit" value="Ubicación" class="btn">Ubicación</button>
+        </div>
+        <div class="inputfield">
+            <label>Dirección</label>
+            <input type="text" class="input" placeholder="Ubicación del lugar">
+        </div>
+        <div class="inputfield">
+            <label>Categoría</label>
+            <div class="custom_select">
+                <select>
+                    <option value="">Naturaleza y Paisajes</option>
+                    <option value="">Cultura y Patrimonio</option>
+                    <option value="">Aventura y Deportes</option>
+                    <option value="">Gastronomía</option>
+                    <option value="">Religión y Espiritualidad</option>
+                    <option value="">Entretenimiento y Vida Nocturna</option>
+                    <option value="">Compras</option>
+                    <option value="">Turismo Rural</option>
+                    <option value="">Ecoturismo</option>
+                    <option value="">Salud y Bienestar</option>
+                    <option value="">Alojamiento y Hospitalidad</option>
+                </select>
+            </div>
+        </div>
+        <div class="inputfield">
+            <label>Fotos</label>
+            <input type="text" class="input" placeholder="Ingresar Foto">
+        </div>
+        <div class="inputfield">
+            <label>Enlaces</label>
+            <input type="text" class="input" placeholder="Ingresar enlaces de videos">
+        </div>
+
+
+        <div class="inputfield">
+            <button type="submit" value="Registrar" class="btn">Registrar</button>
+        </div>
+    </div>
+</div>
+
