@@ -22,36 +22,50 @@
         </div>
 
         <div class="inputfield">
-            <button type="submit" value="Horarios" class="btn">Horario</button>
+            <label>Horario Inicio</label>
+            <input type="datetime-local" class="input" name="StartTime">
+            <span class="label">Fecha de Inicio</span>
         </div>
+        <div class="inputfield">
+            <label>Horario Fin</label>
+            <input type="datetime-local" class="input" name="EndTime">
+            <span class="label">Fecha de Fin</span>
+        </div>
+
+        <div class="inputfield">
+            <label>Categoría</label>
+            <div class="custom_select">
+                <select name="CategoryId">
+                    <option value="">Seleccionar Categoría</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+
         <div class="inputfield">
             <label>Precio</label>
             <input type="number" class="input" placeholder="Precio">
         </div>
-        <div class="inputfield">
-            <button type="submit" value="Ubicación" class="btn">Ubicación</button>
-        </div>
-        <div class="inputfield">
-            <label>Dirección</label>
-            <input type="text" class="input" placeholder="Ubicación del lugar">
-        </div>
+
+
+        <div id="map" style="height: 400px;"></div>
+        <input id="latitude" name="Latitude" />
+        <input id="longitude" name="Longitude" />
+        <button type="button" onclick="showMap()">Select Location</button>
+
         <div class="inputfield">
             <label>Categoría</label>
             <div class="custom_select">
-                <select>
-                    <option value="">Naturaleza y Paisajes</option>
-                    <option value="">Cultura y Patrimonio</option>
-                    <option value="">Aventura y Deportes</option>
-                    <option value="">Gastronomía</option>
-                    <option value="">Religión y Espiritualidad</option>
-                    <option value="">Entretenimiento y Vida Nocturna</option>
-                    <option value="">Compras</option>
-                    <option value="">Turismo Rural</option>
-                    <option value="">Ecoturismo</option>
-                    <option value="">Salud y Bienestar</option>
-                    <option value="">Alojamiento y Hospitalidad</option>
+                <select name="CategoryId">
+                    <option value="">Seleccionar Categoría</option>
+
                 </select>
             </div>
+        </div>
         </div>
         <div class="inputfield">
             <label>Fotos</label>
@@ -68,4 +82,8 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/map.js">  </script>
+
+
 
