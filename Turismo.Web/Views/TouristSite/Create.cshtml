@@ -1,0 +1,144 @@
+﻿@model Turismo.Web.Models.DTO.TouristSiteDTO;
+
+@{
+    ViewData["Title"] = "Create";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Crear Lugar Turistico</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+  
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <form asp-action="Create" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-5 col-md-6">
+                
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label"></label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.CategoryId"></select>
+                    </div>
+                    <hr/>
+                    <div class="input-group mb-3">
+                        <input type="file" asp-for="Photos" name="Photos" lang="es" class="custom-file-input" id="inputGroupFile04" multiple />
+                        <label class="custom-file-label" for="inputGroupFile04">Subir galería de fotos</label>
+                        <small id="name" class="form-text text-muted">(formato .jpg)</small>
+                        <span asp-validation-for="Photos" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <h3>Horario</h3>
+                    <div class="form-group">
+                        <label asp-for="OpeningDays" class="control-label"></label>
+                        <input asp-for="OpeningDays" class="form-control" />
+                        <span asp-validation-for="OpeningDays" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OpeningHour" class="control-label">Hora de apertura: *(hh:mm)</label>
+                        <input asp-for="OpeningHour" class="form-control" maxlength="5" />
+                        <span asp-validation-for="OpeningHour" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ClosingHour" class="control-label"></label>
+                        <input asp-for="ClosingHour" class="form-control" maxlength="5" />
+                        <span asp-validation-for="ClosingHour" class="text-danger"></span>
+                    </div>
+                    
+            </div>
+            <!-- Contenedor del mapa -->
+            <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                <div id="mapContainer" style="width: 100%; height: 460px;"></div>
+                    <div class="form-group">
+                        <label asp-for="Longitude" class="control-label">Longitud</label>
+                        <input asp-for="Longitude" class="form-control" readonly />
+                        <span asp-validation-for="Longitude" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Latitude" class="control-label">Latitud</label>
+                        <input asp-for="Latitude" class="form-control" readonly />
+                        <span asp-validation-for="Latitude" class="text-danger"></span>
+                    </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+        </form>
+        <div>
+            <a asp-action="Index">Volver a la lista de lugares turisticos</a>
+        </div>
+    </section>
+    
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?callback=loadMap" async defer></script>
+    <script>
+        var map;
+
+        function loadMap() {
+            map = new Microsoft.Maps.Map(document.getElementById('mapContainer'), {
+                credentials: 'AgqOaEk-a82xj49nR5TlSVCRSO_tOw0yV3PSCnfUiD533uSOhRpQO5HaqzoYAmlh',
+                center: new Microsoft.Maps.Location(-17.338097, -66.218838), // Coordenadas del centro del mapa
+                zoom: 15 // Nivel de zoom inicial
+            });
+
+            Microsoft.Maps.Events.addHandler(map, 'click', addPin);
+        }
+
+        function addPin(e) {
+            var location = e.location;
+
+            // Actualizar campos de longitud y latitud en el formulario
+            document.getElementById('Longitude').value = location.longitude.toFixed(6);
+            document.getElementById('Latitude').value = location.latitude.toFixed(6);
+
+            // Agregar marcador al mapa
+            var pin = new Microsoft.Maps.Pushpin(location);
+            map.entities.clear(); // Limpiar marcadores existentes
+            map.entities.push(pin);
+        }
+    </script>
+}

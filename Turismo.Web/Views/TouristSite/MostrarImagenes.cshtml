@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Turismo.Web.Models.DTO.PhotoTouristSiteDTO>
+
+@{
+    ViewData["Title"] = "Galeria de imagenes";
+}
+@section Styles {
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Galeria de Imagenes</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Photos</a></li>
+                        <li class="breadcrumb-item active">Galeria</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <p>
+                                <a href="#">Subir mas Imagenes</a>
+                            </p>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @foreach (var item in Model)
+                            {
+                                @*<img src="@item.Photo" width="120" height="80" />*@
+
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="@item.Photo" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Image</h5>
+                                        <p class="card-text">Fecha Creacion: <span>@item.RegisterDate</span></p>
+                                        <a href="#" class="btn btn-primary">Eliminar</a>
+                                    </div>
+                                </div>
+                            }
+
+                            <div>
+                                <a asp-action="Index">Volver a la lista de lugares turisticos</a>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+</div>
+
+@section Scripts{
+    <!-- DataTables  & Plugins -->
+    <script src="~/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/adminlte/plugins/jszip/jszip.min.js"></script>
+    <script src="~/adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="~/adminlte/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            //$("#example1").DataTable({
+            //    "responsive": true, "lengthChange": false, "autoWidth": false,
+            //    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            //$('.eliminarLink').on('click', function (event) {
+            //    event.preventDefault();
+            //    // Obtener el atributo href
+            //    var href = $(this).attr('href');
+            //    if (confirm('¿Estás seguro de que deseas eliminar este elemento?')) {
+            //        window.location.href = href;
+            //    }
+            //});
+        });
+
+    </script>
+}
