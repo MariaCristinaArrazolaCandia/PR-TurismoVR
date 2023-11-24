@@ -1,0 +1,80 @@
+﻿@page
+@model LLajtaAventura.Pages.FiltroModel
+@{
+    ViewData["Title"] = "Buscador Dinámico";
+}
+<form method="post">
+    <label for="searchTerm">Buscar:</label>
+    <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" />
+
+    <label for="selectedCriteria">Criterio:</label>
+    <select id="selectedCriteria" name="SelectedCriteria" asp-items="Model.Criterios">
+        <!-- asp-items se usa para llenar el DropDownList con la lista proporcionada en el modelo -->
+    </select>
+
+    <button type="submit">Buscar</button>
+</form>
+
+@*<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <!-- Agrega más columnas según tus necesidades -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resultado in Model.TouristSites)
+        {
+            <tr>
+                <td>@resultado.Name</td>
+                <td>@resultado.Address</td>
+                <td>@resultado.Description</td>
+                <!-- Agrega más celdas según tus necesidades -->
+            </tr>
+        }
+    </tbody>
+</table>*@
+
+<section class="container top-products">
+    <h1 class="heading-1">Lugares turísticos</h1>
+
+    <div class="container-products">
+        @foreach (var touristSite in Model.TouristSites)
+        {
+            <div class="card-product">
+
+                @{
+                    int countImg = 0;
+                }
+                @foreach (var photo in touristSite.Imagenes)
+                {
+                    <div class="container-img">
+                        <img src="@photo" alt="Imagen @countImg">
+                    </div>
+                    break;
+                }
+
+                <div class="content-card-product">
+                    <!-- Resto del contenido de la tarjeta del producto -->
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+
+                    <h3>@touristSite.Name</h3>
+                    <p class="">@touristSite.Description</p>
+                    <p class="">Dirección: @touristSite.Address</p>
+                    <p class="">Teléfono: @touristSite.PhoneNumber</p>
+                    <p class="">Fecha de evento: @touristSite.RegisterDate.ToString("dd/MM/yyyy")</p>
+                    <p><a href="@("/CategoryEvents/Carrusel?id="+touristSite.TouristSiteId)">Ver Informacion...</a></p>
+                </div>
+            </div>
+        }
+    </div>
+
+</section>

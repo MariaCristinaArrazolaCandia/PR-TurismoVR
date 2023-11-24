@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Proyecto_web</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/style.css" />
+
+	@await RenderSectionAsync("HeaderScripts", required: false)
+</head>
+<body>
+	<header>
+		<div class="container-hero">
+			<div class="container hero">
+				<div class="customer-support">
+					<i class="fa-solid fa-headset"></i>
+					<div class="content-customer-support">
+						<span class="text">Soporte al cliente</span>
+						<span class="number">123-456-7890</span>
+					</div>
+				</div>
+
+				<div class="container-logo">
+@*					<i class="logo-icon" style="background-image: url('@Url.Content("~/img/logo.png")');"></i>*@
+					<img src="~/img1/LogoPrueba.png" style="width: 45px; height: 45px;" />
+					<h1 class="logo"><a href="/">Tiquipaya Aventura</a></h1>
+				</div>
+
+				<div class="container-user">
+					<i class="fa-solid fa-user"></i>
+					<h1>Iniciar</h1>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container-navbar">
+			<nav class="navbar container">
+				<i class="fa-solid fa-bars"></i>
+				<ul class="menu">
+					<li><a href="~/Index">Inicio</a></li>
+
+					
+					<li><a href="~/CategoryEvents/Art">Lugares Turísticos</a></li>
+					<li><a href="~/Filtro">Buscar Lugares</a></li>
+					
+
+
+
+				</ul>
+
+				<form class="search-form">
+					<input type="search" placeholder="Buscar..." />
+					<button class="btn-search">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</form>
+			</nav>
+		</div>
+	</header>
+
+	@RenderBody()
+
+	<footer class="footer">
+		<div class="container container-footer">
+			<div class="menu-footer">
+				<div class="contact-info">
+					<p class="title-footer">Información de Contacto</p>
+					<ul>
+						<li>
+							Dirección: Av Mcal Sta Cruz Ed Hermann P-1
+						</li>
+						<li>Teléfono: (+591) 4445657</li>
+						<li>Fax: 000000000</li>
+						<li>EmaiL: llajtaAventura@support.com</li>
+					</ul>
+					<div class="social-icons">
+						<span class="facebook">
+							<i class="fa-brands fa-facebook-f"></i>
+						</span>
+						<span class="twitter">
+							<i class="fa-brands fa-twitter"></i>
+						</span>
+						<span class="youtube">
+							<i class="fa-brands fa-youtube"></i>
+						</span>
+						<span class="pinterest">
+							<i class="fa-brands fa-pinterest-p"></i>
+						</span>
+						<span class="instagram">
+							<i class="fa-brands fa-instagram"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="information">
+					<p class="title-footer">Información</p>
+					<ul>
+						<li><a href="#">Acerca de Nosotros</a></li>
+						<li><a href="#">Información de Eventos</a></li>
+						<li><a href="#">Politicas de Privacidad</a></li>
+						<li><a href="#">Términos y condiciones</a></li>
+						<li><a href="#">Contactános</a></li>
+					</ul>
+				</div>
+
+				<div class="my-account">
+					<p class="title-footer">Mi cuenta</p>
+
+					<ul>
+						<li><a href="#">Mi cuenta</a></li>
+						<li><a href="#">Historial de eventos</a></li>
+						<li><a href="#">Lista de eventos</a></li>
+						<li><a href="#">Boletín</a></li>
+
+					</ul>
+				</div>
+
+				<div class="newsletter">
+					<p class="title-footer">Boletín informativo</p>
+
+					<div class="content">
+						<p>
+							¡Suscríbete a la página de Tiquipaya Turismo ahora mismo y
+							mantente al tanto de eventos exclusivos! Únete a nuestra
+							comunidad para recibir notificaciones sobre los eventos
+							más emocionantes, promociones especiales y contenido exclusivo
+							que solo encontrarás aquí.
+						</p>
+						<input type="email" placeholder="Ingresa el correo aquí...">
+						<button>Suscríbete</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="copyright">
+				<p>
+					Desarrollado por Junior Tecno &copy; 2023
+				</p>
+
+				<!-- <img src="img/payment.png" alt="Pagos"> -->
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://kit.fontawesome.com/81581fb069.js"
+			crossorigin="anonymous"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

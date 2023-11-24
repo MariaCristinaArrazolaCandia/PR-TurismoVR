@@ -1,0 +1,258 @@
+﻿@page
+@model LLajtaAventura.Pages.CategoryEvents.CarruselModel
+@{
+	ViewData["Title"] = "Arte";
+}
+<style>
+    .slide {
+        position: relative;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+        margin-top: 26px;
+    }
+
+    .slide-inner {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: calc( 400px + 3em);
+        display: flex;
+        justify-content: center;
+    }
+
+    .slide-open:checked + .slide-item {
+        position: static;
+        opacity: 100;
+    }
+
+    .slide-item {
+        position: absolute;
+        opacity: 0;
+        -webkit-transition: opacity 0.6s ease-out;
+        transition: opacity 0.6s ease-out;
+    }
+
+        .slide-item img {
+            align-items: center;
+            justify-items: center;
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
+
+    .slide-control {
+        background: rgba(0, 0, 0, 0.28);
+        border-radius: 50%;
+        color: #fff;
+        cursor: pointer;
+        display: none;
+        font-size: 40px;
+        height: 40px;
+        line-height: 35px;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(0, -50%);
+        cursor: pointer;
+        -ms-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        text-align: center;
+        width: 40px;
+        z-index: 10;
+    }
+
+        .slide-control.prev {
+            left: 2%;
+        }
+
+        .slide-control.next {
+            right: 2%;
+        }
+
+        .slide-control:hover {
+            background: rgba(0, 0, 0, 0.8);
+            color: #aaaaaa;
+        }
+
+    #slide-1:checked ~ .control-1,
+    #slide-2:checked ~ .control-2,
+    #slide-3:checked ~ .control-3 {
+        display: block;
+    }
+
+    .slide-indicador {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        bottom: 2%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 10;
+    }
+
+        .slide-indicador li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+    .slide-circulo {
+        color: #828282;
+        cursor: pointer;
+        display: block;
+        font-size: 35px;
+    }
+
+        .slide-circulo:hover {
+            color: #aaaaaa;
+        }
+
+    #slide-1:checked ~ .control-1 ~ .slide-indicador
+    li:nth-child(1) .slide-circulo,
+    #slide-2:checked ~ .control-2 ~ .slide-indicador
+    li:nth-child(2) .slide-circulo,
+    #slide-3:checked ~ .control-3 ~ .slide-indicador
+    li:nth-child(3) .slide-circulo {
+        color: #428bca;
+    }
+
+    #titulo {
+        width: 100%;
+        position: absolute;
+        padding: 0px;
+        margin: 0px auto;
+        text-align: center;
+        font-size: 27px;
+        color: rgba(255, 255, 255, 1);
+        font-family: 'Open Sans', sans-serif;
+        z-index: 9999;
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33), -1px 0px 2px rgba(255, 255, 255, 0);
+    }
+</style>
+@*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+*@
+<section class="container top-products">
+    <h1 class="heading-1">@Model.touristSiteData.Name</h1>
+
+    <div class="container-products">
+        @*@foreach (var touristSite in Model.TouristSites)
+        {*@
+            <div class="card-product">
+
+
+        <div class="slide">
+            <div class="slide-inner">
+                @*<input class="slide-open" type="radio" id="slide-1"
+                       name="slide" aria-hidden="true" hidden="" checked="checked">
+                <div class="slide-item">
+                    <img src="https://www.migueltroyano.com/wp-content/uploads/2020/10/embeddingApi_7.jpg">
+                </div>
+                <input class="slide-open" type="radio" id="slide-2"
+                       name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="https://www.migueltroyano.com/wp-content/uploads/2020/09/postgres_copy.png">
+                </div>
+                <input class="slide-open" type="radio" id="slide-3"
+                       name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="https://www.migueltroyano.com/wp-content/uploads/2020/09/excel_guardar_como_csv.jpg">
+                </div>*@
+                @{
+                    int countImg = 1;
+                }
+                @foreach (var photo in Model.touristSiteData.Imagenes)
+                {
+                        if (countImg == 1)
+                        {
+                            <input class="slide-open" type="radio" id="@("slide-"+countImg)"
+                                   name="slide" aria-hidden="true" hidden="" checked="checked">
+                            <div class="slide-item">
+                                <img src="@photo" alt="Imagen @countImg">
+                            </div>
+                        }
+                        else
+                        {
+                            <input class="slide-open" type="radio" id="@("slide-"+countImg)"
+                                     name="slide" aria-hidden="true" hidden="">
+                            <div class="slide-item">
+                                <img src="@photo" alt="Imagen @countImg">
+                            </div>
+                            
+                        }
+
+                    countImg++;
+                }
+                    @*@{
+                        int countImg01 = Model.touristSiteData.Imagenes.Count;
+                        int countImg02 = 1;
+                    }
+                    @foreach (var photo in Model.touristSiteData.Imagenes)
+                    {
+                        <label for="@("slide-"+countImg01)" class="slide-control prev @("control-"+countImg02)">‹</label>
+                        if ((countImg01 - 1) == 0)
+                        {
+                            countImg01 = Model.touristSiteData.Imagenes.Count;
+                        }
+                        else
+                        {
+                            countImg01--;
+                        }
+
+                        <label for="@("slide-"+countImg01)" class="slide-control next @("control-"+countImg02)">></label>
+                        if ((countImg01 - 1) == 0)
+                        {
+                            countImg01 = Model.touristSiteData.Imagenes.Count;
+                        }
+                        else
+                        {
+                            countImg01--;
+                        }
+                        countImg02++;
+                    }
+                    *@
+
+                <label for="slide-3" class="slide-control prev control-1">‹</label>
+                <label for="slide-2" class="slide-control next control-1">›</label>
+                <label for="slide-1" class="slide-control prev control-2">‹</label>
+                <label for="slide-3" class="slide-control next control-2">›</label>
+                <label for="slide-2" class="slide-control prev control-3">‹</label>
+                <label for="slide-1" class="slide-control next control-3">›</label>
+
+                <ol class="slide-indicador">
+                    @{
+                       int countImg1 = 1;
+                    }
+                    @foreach (var photo in Model.touristSiteData.Imagenes)
+                    {
+                            <li>
+                                <label for="@("slide-"+countImg1)" class="slide-circulo">•</label>
+                            </li>
+                            @*<li>
+                            <label for="slide-2" class="slide-circulo">•</label>
+                        </li>
+                        <li>
+                            <label for="slide-3" class="slide-circulo">•</label>
+                        </li>*@
+                            countImg1++;
+                        }
+                </ol>
+            </div>
+        </div>
+    </div>
+
+</section>
+@*<!-- Agrega la referencia a los scripts de jQuery, Popper.js y Bootstrap desde wwwroot/lib -->
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/popper.js/umd/popper.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        setInterval(function () {
+            document.getElementsByClassName('carousel-control-prev')[0].click()
+        }, 3000)
+    });
+</script>
+*@
+@*
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+*@

@@ -1,0 +1,130 @@
+﻿@page
+@model LLajtaAventura.Pages.Events.CreateModel
+@{
+	ViewData["Title"] = "creacion de evento";
+}
+
+<main class="main-content">
+    <section class="vh-100" style="background-color: #4ABDDC;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Evento</p>
+
+                                    <form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data">
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input asp-for="New_Event.Title" class="form-control" />
+                                                <label class="form-label" asp-for="New_Event.Title">Nombre del evento:</label>
+                                                <span asp-validation-for="New_Event.Title" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-calendar fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="datetime" asp-for="New_Event.StartDate" class="form-control" />
+                                                <label class="form-label" asp-for="New_Event.StartDate">Fecha y hora Inicio:</label>
+                                                <span asp-validation-for="New_Event.StartDate" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-calendar fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="datetime" asp-for="New_Event.EndDate" class="form-control" />
+                                                <label class="form-label" asp-for="New_Event.EndDate">Fecha y hora Fin:</label>
+                                                <span asp-validation-for="New_Event.EndDate" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-house fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input asp-for="New_Event.Address" class="form-control" />
+                                                <label class="form-label" asp-for="New_Event.Address">Ubicacion:</label>
+                                                <span asp-validation-for="New_Event.Address" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-file fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input asp-for="New_Event.Description" class="form-control" />
+                                                <label class="form-label" asp-for="New_Event.Description">Descripcion:</label>
+                                                <span asp-validation-for="New_Event.Description" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-tag fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <select class="form-select">
+                                                    @foreach(var cat in Model.categories)
+                                                    {
+                                                        <option value="@cat.Id">@cat.Name</option>
+                                                    }
+                                                </select>
+                                                <label class="form-label">Categoria:</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-camera fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input asp-for="formFile" name="formFile" class="form-control">
+                                                <label asp-for="formFile" id="ImgUpload" accept="image/*">Selecciona una imagen:</label>
+                                                <span asp-validation-for="formFile" class="text-danger" ></span>
+                                            </div>
+                                        </div>  
+
+                                        @*false sesion para esto*@
+                                        <input asp-for="New_Event.IdUser" value="1" hidden />
+                                        <input asp-for="New_Event.State" value="f" hidden />
+
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                    <div class="form-group">
+                                        <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100%;" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    document.getElementById('ImgUpload').addEventListener('change', function () {
+        var fileInput = this;
+        var imagePreview = document.getElementById('imagePreview');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+        }
+    });
+</script>
