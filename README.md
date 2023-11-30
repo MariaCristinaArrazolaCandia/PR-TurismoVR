@@ -144,3 +144,5 @@ Detalles paso a paso de la puesta en marcha en hosting para el sitio web, API, b
 ## Bibliografía:
 
 - [Getting a Bing Maps Key - Microsoft Learn](https://learn.microsoft.com/en-us/bingmaps/getting-started/bing-maps-dev-center-help/getting-a-bing-maps-key)
+## VIDEO YOUTUBE
+https://youtu.be/B9f4w4N4oAA
