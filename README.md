@@ -74,6 +74,7 @@ Enlaces a documentación técnica, tutoriales y foros de soporte.
 2. Microsoft Learn. "Solicitar una Clave de Autenticación de Mapas - UWP Applications." [Solicitar una Clave de Autenticación de Mapas - UWP Applications](https://learn.microsoft.com/en-us/windows/uwp/maps-and-location/authentication-key).
 
 
-  
+  ## VIDEO YOUTUBE
+https://youtu.be/B9f4w4N4oAA
 
   
