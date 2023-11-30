@@ -62,3 +62,5 @@ Detalles paso a paso para poner en marcha el sitio web, la API, la base de datos
 ## Bibliografía
 - [Microsoft API Web con ASP.NET Core](https://learn.microsoft.com/es-es/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio)
 - [Dotnet-Firebase - Code Maze](https://code-maze.com/dotnet-firebase/)
+## VIDEO YOUTUBE
+https://youtu.be/B9f4w4N4oAA
